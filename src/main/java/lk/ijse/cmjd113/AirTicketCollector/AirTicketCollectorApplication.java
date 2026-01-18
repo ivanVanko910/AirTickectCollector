@@ -10,4 +10,4 @@ public class AirTicketCollectorApplication {
 		SpringApplication.run(AirTicketCollectorApplication.class, args);
 	}
 
-}
+} 
