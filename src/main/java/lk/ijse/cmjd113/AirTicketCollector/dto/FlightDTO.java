@@ -11,6 +11,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class FlightDTO implements Serializable {
+    public enum FlightStatus {
+        AVAILABLE, CANCELLED, NOT_SCHEDULED, OUT_OF_SERVICE
+    }
+
     private String flightNo;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;

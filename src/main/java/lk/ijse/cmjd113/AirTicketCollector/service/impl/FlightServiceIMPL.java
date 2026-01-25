@@ -2,14 +2,17 @@ package lk.ijse.cmjd113.AirTicketCollector.service.impl;
 
 import lk.ijse.cmjd113.AirTicketCollector.dto.FlightDTO;
 import lk.ijse.cmjd113.AirTicketCollector.service.FlightService;
+import lk.ijse.cmjd113.AirTicketCollector.util.IDGenerate;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class FlightServiceIMPL implements FlightService {
     @Override
-    public void saveFlight(FlightDTO flightDTO) {
-
+    public FlightDTO saveFlight(FlightDTO flight) {
+        flight.setFlightNo(IDGenerate.flightNo());
+        return flight;
     }
 
     @Override

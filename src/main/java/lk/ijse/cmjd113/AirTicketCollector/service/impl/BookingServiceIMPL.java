@@ -2,6 +2,8 @@ package lk.ijse.cmjd113.AirTicketCollector.service.impl;
 
 import lk.ijse.cmjd113.AirTicketCollector.dto.BookingDTO;
 import lk.ijse.cmjd113.AirTicketCollector.service.BookingService;
+import lk.ijse.cmjd113.AirTicketCollector.util.IDGenerate;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,8 +11,9 @@ import java.util.List;
 @Service
 public class BookingServiceIMPL implements BookingService {
     @Override
-    public void saveBooking(BookingDTO bookingId) {
-
+    public BookingDTO saveBooking(BookingDTO booking) {
+        booking.setBookingId(IDGenerate.bookingId());
+        return booking;
     }
 
     @Override
