@@ -12,10 +12,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class BookingDTO implements Serializable {
-    public enum BookingStatus {
-        CONFIRMED, PENDING, CANCELLED
-    }
-
     private String bookingId;
     private LocalDateTime bookingDate;
     private Integer seatCount;

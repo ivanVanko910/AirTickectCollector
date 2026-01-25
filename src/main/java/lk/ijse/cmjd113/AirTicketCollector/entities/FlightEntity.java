@@ -1,8 +1,7 @@
 package lk.ijse.cmjd113.AirTicketCollector.entities;
 
 import jakarta.persistence.*;
-import lk.ijse.cmjd113.AirTicketCollector.dto.AirportDTO;
-import lk.ijse.cmjd113.AirTicketCollector.dto.FlightDTO;
+import lk.ijse.cmjd113.AirTicketCollector.dto.FlightStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +22,7 @@ public class FlightEntity implements Serializable {
     private int availableSeats;
     private double baseFare;
     @Enumerated(EnumType.STRING)
-    private FlightDTO status;
+    private FlightStatus status;
     @JoinColumn(name = "dep_airport")
     @ManyToOne(fetch = FetchType.LAZY)
     private AirportEntity departureAirport;
