@@ -18,4 +18,8 @@ public class IDGenerate {
     public static String flightNo() {
         return "FLT-" + UUID.randomUUID();
     }
+
+    public static String passengerId() {
+        return "PSG-" + UUID.randomUUID();
+    }
 }
