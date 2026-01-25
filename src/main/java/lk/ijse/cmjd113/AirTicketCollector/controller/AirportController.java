@@ -62,6 +62,5 @@ public class AirportController {
         System.out.println("Updated ID is : "+airportId);
         System.out.println("Updated Airport is :"+updatedAirport);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-    }
+    } 
 }
