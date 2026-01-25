@@ -8,11 +8,12 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+@Service("Service One")
 @Primary
 public class PassengerServiceIMPL implements PassengerService {
     @Override
     public PassengerDTO savePassenger(PassengerDTO passenger) {
+        System.out.println("Form passenger service one: " + passenger);
         passenger.setPassengerId(IDGenerate.passengerId());
         return passenger;
     }
