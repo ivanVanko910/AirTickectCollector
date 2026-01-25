@@ -36,7 +36,7 @@ public class BookingDataController {
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
   @PatchMapping("/{bookingId}")
-  public ResponseEntity<Void> updateAirport(@PathVariable String bookingId,@RequestBody BookingDTO bookingData){
+  public ResponseEntity<Void> updateBooking(@PathVariable String bookingId,@RequestBody BookingDTO bookingData){
     bookingService.updateBooking(bookingId, bookingData);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
