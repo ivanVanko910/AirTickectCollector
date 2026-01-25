@@ -1,17 +1,31 @@
 package lk.ijse.cmjd113.AirTicketCollector.service.impl;
 
+import lk.ijse.cmjd113.AirTicketCollector.dao.AirportDao;
 import lk.ijse.cmjd113.AirTicketCollector.dto.AirportDTO;
+import lk.ijse.cmjd113.AirTicketCollector.entities.AirportEntity;
 import lk.ijse.cmjd113.AirTicketCollector.service.AirportService;
 import lk.ijse.cmjd113.AirTicketCollector.util.IDGenerate;
+import lk.ijse.cmjd113.AirTicketCollector.util.Mapper;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class AirportServiceImpl implements AirportService {
+    private final AirportDao airportDao;
+    private final Mapper mapper;
+
     @Override
-    public AirportDTO saveAirport(AirportDTO airport) {
+    public void saveAirport(AirportDTO airport) {
         airport.setAirportId(IDGenerate.airportId());
-        return airport;
+        AirportEntity airportEntity = mapper.toAirportEntity(airport);
+        airportDao.save(airportEntity);
     }
 
     @Override
