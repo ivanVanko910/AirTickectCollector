@@ -49,8 +49,12 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public void updateAirport(String airportId, AirportDTO updatedAirport) {
-        updatedAirport.setAirportId(airportId);
-        System.out.println("Updated ID is : " + airportId);
-        System.out.println("Updated Airport is : " + updatedAirport);
+        AirportEntity existingAirport = airportDao.findById(airportId).orElseThrow(
+            () -> new RuntimeException("No Airport Found"));
+        existingAirport.setAirportCode(updatedAirport.getAirportCode());
+        existingAirport.setName(updatedAirport.getName());
+        existingAirport.setCity(updatedAirport.getCity());
+        existingAirport.setCountry(updatedAirport.getCountry());
+        airportDao.save(existingAirport);
     }
 }
