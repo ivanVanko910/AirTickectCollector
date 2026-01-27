@@ -6,7 +6,7 @@ import lk.ijse.cmjd113.AirTicketCollector.dto.UserDTO;
 
 public interface UserService {
     UserDTO saveUser(UserDTO user);
-    UserDTO getSelectedUser(String userId);
+    UserDTO getUser(String userId);
     List<UserDTO> getAllUsers();
     void deleteUser(String userId);
     void updateUser(String userId, UserDTO updatedUser);

@@ -30,21 +30,27 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public AirportDTO getSelectedAirport(String airportId) {
-        return null;
+        var foundAirport = airportDao.findById(airportId).orElseThrow(
+            () -> new RuntimeException("No Airport Found"));
+        return mapper.toAirportDTO(foundAirport);
     }
 
     @Override
     public List<AirportDTO> getAllAirports() {
-        return List.of();
+        return mapper.toAirportDTOList(airportDao.findAll());
     }
 
     @Override
     public void deleteAirport(String airportId) {
-
+        var foundAirport = airportDao.findById(airportId).orElseThrow(
+            () -> new RuntimeException("No Airport Found"));
+        airportDao.delete(foundAirport);
     }
 
     @Override
     public void updateAirport(String airportId, AirportDTO updatedAirport) {
-
+        updatedAirport.setAirportId(airportId);
+        System.out.println("Updated ID is : " + airportId);
+        System.out.println("Updated Airport is : " + updatedAirport);
     }
 }

@@ -10,15 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserDTO implements Serializable{
-    public enum Role {
-        USER, ADMIN
-    }
-
     private String userId;
     private String firstName;
     private String lastName;
     private String email;
-    private Role role;
     private String password;
+    private Role role;
     private String phone;
 }

@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getSelectedUser(String userId) {
+    public UserDTO getUser(String userId) {
         return null;
     }
 

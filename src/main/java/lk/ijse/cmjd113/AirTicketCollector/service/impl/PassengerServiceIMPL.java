@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service("Service One")
+@Service("ServiceOne")
 @Primary
 public class PassengerServiceIMPL implements PassengerService {
     @Override
