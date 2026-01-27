@@ -1,7 +1,7 @@
 package lk.ijse.cmjd113.AirTicketCollector.util;
 
-import lk.ijse.cmjd113.AirTicketCollector.dto.AirportDTO;
-import lk.ijse.cmjd113.AirTicketCollector.entities.AirportEntity;
+import lk.ijse.cmjd113.AirTicketCollector.dto.*;
+import lk.ijse.cmjd113.AirTicketCollector.entities.*;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -24,5 +24,49 @@ public class Mapper {
     public List<AirportDTO> toAirportDTOList(List<AirportEntity> airportEntityList){
         return modelMapper.map(airportEntityList, 
             new TypeToken<List<AirportDTO>>() {}.getType());
+    }
+
+    //User
+    public UserDTO toUserDTO(UserEntity userEntity) {
+        return modelMapper.map(userEntity, UserDTO.class);
+    }
+    public UserEntity toUserEntity(UserDTO userDTO) {
+        return modelMapper.map(userDTO, UserEntity.class);
+    }
+    public List<UserDTO> toUserDTOList(List<UserEntity> userEntityList) {
+        return modelMapper.map(userEntityList, new TypeToken<List<UserDTO>>() {}.getType());
+    }
+
+    //Flight
+    public FlightDTO toFlightDTO(FlightEntity flightEntity) {
+        return modelMapper.map(flightEntity, FlightDTO.class);
+    }
+    public FlightEntity toFlightEntity(FlightDTO flightDTO) {
+        return modelMapper.map(flightDTO, FlightEntity.class);
+    }
+    public List<FlightDTO> toFlightDTOList(List<FlightEntity> flightEntityList) {
+        return modelMapper.map(flightEntityList, new TypeToken<List<FlightDTO>>() {}.getType());
+    }
+
+    //Booking
+    public BookingDTO toBookingDTO(BookingEntity bookingEntity) {
+        return modelMapper.map(bookingEntity, BookingDTO.class);
+    }
+    public BookingEntity toBookingEntity(BookingDTO bookingDTO) {
+        return modelMapper.map(bookingDTO, BookingEntity.class);
+    }
+    public List<BookingDTO> toBookingDTOList(List<BookingEntity> bookingEntityList) {
+        return modelMapper.map(bookingEntityList, new TypeToken<List<BookingDTO>>() {}.getType());
+    }
+
+    //Passenger
+    public PassengerDTO toPassengerDTO(PassengerEntity passengerEntity) {
+        return modelMapper.map(passengerEntity, PassengerDTO.class);
+    }
+    public PassengerEntity toPassengerEntity(PassengerDTO passengerDTO) {
+        return modelMapper.map(passengerDTO, PassengerEntity.class);
+    }
+    public List<PassengerDTO> toPassengerDTOList(List<PassengerEntity> passengerEntityList) {
+        return modelMapper.map(passengerEntityList, new TypeToken<List<PassengerDTO>>() {}.getType());
     }
 }
