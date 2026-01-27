@@ -4,5 +4,6 @@ public enum FlightStatus {
     AVAILABLE,
     CANCELLED,
     NOT_SCHEDULED,
-    OUT_OF_SERVICE
+    OUT_OF_SERVICE,
+    CONFIRMED
 }

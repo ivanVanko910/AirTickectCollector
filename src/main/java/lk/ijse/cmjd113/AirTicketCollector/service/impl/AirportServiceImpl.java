@@ -4,6 +4,7 @@ import lk.ijse.cmjd113.AirTicketCollector.dao.AirportDao;
 import lk.ijse.cmjd113.AirTicketCollector.dto.AirportDTO;
 import lk.ijse.cmjd113.AirTicketCollector.entities.AirportEntity;
 import lk.ijse.cmjd113.AirTicketCollector.service.AirportService;
+import lk.ijse.cmjd113.AirTicketCollector.exception.NotFoundException;
 import lk.ijse.cmjd113.AirTicketCollector.util.IDGenerate;
 import lk.ijse.cmjd113.AirTicketCollector.util.Mapper;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class AirportServiceImpl implements AirportService {
     @Override
     public AirportDTO getSelectedAirport(String airportId) {
         var foundAirport = airportDao.findById(airportId).orElseThrow(
-            () -> new RuntimeException("No Airport Found"));
+            () -> new NotFoundException("No Airport Found"));
         return mapper.toAirportDTO(foundAirport);
     }
 
@@ -43,14 +44,14 @@ public class AirportServiceImpl implements AirportService {
     @Override
     public void deleteAirport(String airportId) {
         var foundAirport = airportDao.findById(airportId).orElseThrow(
-            () -> new RuntimeException("No Airport Found"));
+            () -> new NotFoundException("No Airport Found"));
         airportDao.delete(foundAirport);
     }
 
     @Override
     public void updateAirport(String airportId, AirportDTO updatedAirport) {
         AirportEntity existingAirport = airportDao.findById(airportId).orElseThrow(
-            () -> new RuntimeException("No Airport Found"));
+            () -> new NotFoundException("No Airport Found"));
         existingAirport.setAirportCode(updatedAirport.getAirportCode());
         existingAirport.setName(updatedAirport.getName());
         existingAirport.setCity(updatedAirport.getCity());

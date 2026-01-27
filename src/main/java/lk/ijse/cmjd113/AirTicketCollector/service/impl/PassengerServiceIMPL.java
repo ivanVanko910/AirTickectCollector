@@ -6,6 +6,7 @@ import lk.ijse.cmjd113.AirTicketCollector.dto.PassengerDTO;
 import lk.ijse.cmjd113.AirTicketCollector.entities.BookingEntity;
 import lk.ijse.cmjd113.AirTicketCollector.entities.PassengerEntity;
 import lk.ijse.cmjd113.AirTicketCollector.service.PassengerService;
+import lk.ijse.cmjd113.AirTicketCollector.exception.NotFoundException;
 import lk.ijse.cmjd113.AirTicketCollector.util.IDGenerate;
 import lk.ijse.cmjd113.AirTicketCollector.util.Mapper;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class PassengerServiceIMPL implements PassengerService {
 
         if (passengerDTO.getBookingId() != null) {
             BookingEntity bookingEntity = bookingDao.findById(passengerDTO.getBookingId())
-                    .orElseThrow(() -> new RuntimeException("Booking not found"));
+                    .orElseThrow(() -> new NotFoundException("Booking not found"));
             passengerEntity.setBookingId(bookingEntity);
         }
 
@@ -45,7 +46,7 @@ public class PassengerServiceIMPL implements PassengerService {
     @Override
     public PassengerDTO getSelectedPassenger(String passengerId) {
         PassengerEntity passengerEntity = passengerDao.findById(passengerId)
-                .orElseThrow(() -> new RuntimeException("Passenger not found"));
+                .orElseThrow(() -> new NotFoundException("Passenger not found"));
         return convertToDTO(passengerEntity);
     }
 
@@ -57,14 +58,14 @@ public class PassengerServiceIMPL implements PassengerService {
     @Override
     public void deletePassenger(String passengerId) {
         PassengerEntity passengerEntity = passengerDao.findById(passengerId)
-                .orElseThrow(() -> new RuntimeException("Passenger not found"));
+                .orElseThrow(() -> new NotFoundException("Passenger not found"));
         passengerDao.delete(passengerEntity);
     }
 
     @Override
     public void updatePassenger(String passengerId, PassengerDTO passengerDTO) {
         PassengerEntity existingPassenger = passengerDao.findById(passengerId)
-                .orElseThrow(() -> new RuntimeException("Passenger not found"));
+                .orElseThrow(() -> new NotFoundException("Passenger not found"));
 
         existingPassenger.setFullName(passengerDTO.getFullName());
         existingPassenger.setAge(passengerDTO.getAge());
@@ -73,7 +74,7 @@ public class PassengerServiceIMPL implements PassengerService {
 
         if (passengerDTO.getBookingId() != null) {
             BookingEntity bookingEntity = bookingDao.findById(passengerDTO.getBookingId())
-                    .orElseThrow(() -> new RuntimeException("Booking not found"));
+                    .orElseThrow(() -> new NotFoundException("Booking not found"));
             existingPassenger.setBookingId(bookingEntity);
         }
 

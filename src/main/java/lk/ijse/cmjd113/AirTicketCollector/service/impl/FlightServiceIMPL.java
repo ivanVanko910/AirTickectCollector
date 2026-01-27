@@ -6,6 +6,7 @@ import lk.ijse.cmjd113.AirTicketCollector.dto.FlightDTO;
 import lk.ijse.cmjd113.AirTicketCollector.entities.AirportEntity;
 import lk.ijse.cmjd113.AirTicketCollector.entities.FlightEntity;
 import lk.ijse.cmjd113.AirTicketCollector.service.FlightService;
+import lk.ijse.cmjd113.AirTicketCollector.exception.NotFoundException;
 import lk.ijse.cmjd113.AirTicketCollector.util.IDGenerate;
 import lk.ijse.cmjd113.AirTicketCollector.util.Mapper;
 import lombok.RequiredArgsConstructor;
@@ -32,13 +33,13 @@ public class FlightServiceIMPL implements FlightService {
 
         if (flightDTO.getDepartureAirport() != null) {
             AirportEntity depAirport = airportDao.findById(flightDTO.getDepartureAirport())
-                    .orElseThrow(() -> new RuntimeException("Departure Airport not found"));
+                    .orElseThrow(() -> new NotFoundException("Departure Airport not found"));
             flightEntity.setDepartureAirport(depAirport);
         }
 
         if (flightDTO.getArrivalAirport() != null) {
             AirportEntity arrAirport = airportDao.findById(flightDTO.getArrivalAirport())
-                    .orElseThrow(() -> new RuntimeException("Arrival Airport not found"));
+                    .orElseThrow(() -> new NotFoundException("Arrival Airport not found"));
             flightEntity.setArrivalAirport(arrAirport);
         }
 
@@ -49,7 +50,7 @@ public class FlightServiceIMPL implements FlightService {
     @Override
     public void updateFlight(String flightId, FlightDTO flightDTO) {
         FlightEntity existingFlight = flightDao.findById(flightId)
-                .orElseThrow(() -> new RuntimeException("Flight not found"));
+                .orElseThrow(() -> new NotFoundException("Flight not found"));
 
         existingFlight.setDepartureTime(flightDTO.getDepartureTime());
         existingFlight.setArrivalTime(flightDTO.getArrivalTime());
@@ -60,13 +61,13 @@ public class FlightServiceIMPL implements FlightService {
 
         if (flightDTO.getDepartureAirport() != null) {
             AirportEntity depAirport = airportDao.findById(flightDTO.getDepartureAirport())
-                    .orElseThrow(() -> new RuntimeException("Departure Airport not found"));
+                    .orElseThrow(() -> new NotFoundException("Departure Airport not found"));
             existingFlight.setDepartureAirport(depAirport);
         }
 
         if (flightDTO.getArrivalAirport() != null) {
             AirportEntity arrAirport = airportDao.findById(flightDTO.getArrivalAirport())
-                    .orElseThrow(() -> new RuntimeException("Arrival Airport not found"));
+                    .orElseThrow(() -> new NotFoundException("Arrival Airport not found"));
             existingFlight.setArrivalAirport(arrAirport);
         }
 
@@ -76,14 +77,14 @@ public class FlightServiceIMPL implements FlightService {
     @Override
     public void deleteFlight(String flightId) {
         FlightEntity flightEntity = flightDao.findById(flightId)
-                .orElseThrow(() -> new RuntimeException("Flight not found"));
+                .orElseThrow(() -> new NotFoundException("Flight not found"));
         flightDao.delete(flightEntity);
     }
 
     @Override
     public FlightDTO getFlight(String flightId) {
         FlightEntity flightEntity = flightDao.findById(flightId)
-                .orElseThrow(() -> new RuntimeException("Flight not found"));
+                .orElseThrow(() -> new NotFoundException("Flight not found"));
         return convertToDTO(flightEntity);
     }
 

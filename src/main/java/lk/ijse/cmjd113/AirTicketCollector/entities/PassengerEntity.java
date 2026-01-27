@@ -15,9 +15,9 @@ public class PassengerEntity implements Serializable {
     @Id
     private String passengerId;
     private String fullName;
-    private int age;
+    private Integer age;
     private String gender;
-    private int seatNumber;
+    private Integer seatNumber;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id")
     private BookingEntity bookingId;
