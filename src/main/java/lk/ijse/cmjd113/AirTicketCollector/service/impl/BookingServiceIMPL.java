@@ -7,6 +7,7 @@ import lk.ijse.cmjd113.AirTicketCollector.dto.BookingDTO;
 import lk.ijse.cmjd113.AirTicketCollector.entities.BookingEntity;
 import lk.ijse.cmjd113.AirTicketCollector.entities.FlightEntity;
 import lk.ijse.cmjd113.AirTicketCollector.entities.UserEntity;
+import lk.ijse.cmjd113.AirTicketCollector.exception.NotFoundException;
 import lk.ijse.cmjd113.AirTicketCollector.service.BookingService;
 import lk.ijse.cmjd113.AirTicketCollector.util.IDGenerate;
 import lk.ijse.cmjd113.AirTicketCollector.util.Mapper;
@@ -35,13 +36,13 @@ public class BookingServiceIMPL implements BookingService {
 
         if (bookingDTO.getFlightId() != null) {
             FlightEntity flightEntity = flightDao.findById(bookingDTO.getFlightId())
-                    .orElseThrow(() -> new RuntimeException("Flight not found"));
+                    .orElseThrow(() -> new NotFoundException("Flight not found"));
             bookingEntity.setFlightId(flightEntity);
         }
 
         if (bookingDTO.getUserId() != null) {
             UserEntity userEntity = userDao.findById(bookingDTO.getUserId())
-                    .orElseThrow(() -> new RuntimeException("User not found"));
+                    .orElseThrow(() -> new NotFoundException("User not found"));
             bookingEntity.setUser(userEntity);
         }
 
@@ -52,7 +53,7 @@ public class BookingServiceIMPL implements BookingService {
     @Override
     public void updateBooking(String bookingId, BookingDTO bookingDTO) {
         BookingEntity existingBooking = bookingDao.findById(bookingId)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new NotFoundException("Booking not found"));
 
         existingBooking.setBookingDate(bookingDTO.getBookingDate());
         existingBooking.setSeatCount(bookingDTO.getSeatCount() != null ? bookingDTO.getSeatCount() : 0);
@@ -61,13 +62,13 @@ public class BookingServiceIMPL implements BookingService {
 
         if (bookingDTO.getFlightId() != null) {
             FlightEntity flightEntity = flightDao.findById(bookingDTO.getFlightId())
-                    .orElseThrow(() -> new RuntimeException("Flight not found"));
+                    .orElseThrow(() -> new NotFoundException("Flight not found"));
             existingBooking.setFlightId(flightEntity);
         }
 
         if (bookingDTO.getUserId() != null) {
             UserEntity userEntity = userDao.findById(bookingDTO.getUserId())
-                    .orElseThrow(() -> new RuntimeException("User not found"));
+                    .orElseThrow(() -> new NotFoundException("User not found"));
             existingBooking.setUser(userEntity);
         }
 
@@ -77,14 +78,14 @@ public class BookingServiceIMPL implements BookingService {
     @Override
     public void deleteBooking(String bookingId) {
         BookingEntity bookingEntity = bookingDao.findById(bookingId)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new NotFoundException("Booking not found"));
         bookingDao.delete(bookingEntity);
     }
 
     @Override
     public BookingDTO getBooking(String bookingId) {
         BookingEntity bookingEntity = bookingDao.findById(bookingId)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new NotFoundException("Booking not found"));
         return convertToDTO(bookingEntity);
     }
 

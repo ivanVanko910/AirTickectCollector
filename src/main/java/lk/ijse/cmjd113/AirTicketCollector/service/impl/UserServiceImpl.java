@@ -9,6 +9,7 @@ import lk.ijse.cmjd113.AirTicketCollector.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import lk.ijse.cmjd113.AirTicketCollector.service.UserService;
+import lk.ijse.cmjd113.AirTicketCollector.exception.NotFoundException;
 import lk.ijse.cmjd113.AirTicketCollector.dto.UserDTO;
 import lk.ijse.cmjd113.AirTicketCollector.util.IDGenerate;
 import jakarta.transaction.Transactional;
@@ -32,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUser(String userId) {
-        UserEntity userEntity = userDao.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        UserEntity userEntity = userDao.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         return convertToDTO(userEntity);
     }
 
@@ -43,13 +44,13 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public void deleteUser(String userId) {
-        UserEntity userEntity = userDao.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        UserEntity userEntity = userDao.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         userDao.delete(userEntity);
     }
 
     @Override
     public void updateUser(String userId, UserDTO updatedUser) {
-        UserEntity existingUser = userDao.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        UserEntity existingUser = userDao.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         existingUser.setFullName(updatedUser.getFirstName() + " " + updatedUser.getLastName());
         existingUser.setEmail(updatedUser.getEmail());
         existingUser.setPassword(updatedUser.getPassword());

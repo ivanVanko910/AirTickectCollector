@@ -18,9 +18,9 @@ public class FlightEntity implements Serializable {
     private String flightNo;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    private int totalSeats;
-    private int availableSeats;
-    private double baseFare;
+    private Integer totalSeats;
+    private Integer availableSeats;
+    private Double baseFare;
     @Enumerated(EnumType.STRING)
     private FlightStatus status;
     @JoinColumn(name = "dep_airport")

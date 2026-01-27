@@ -12,8 +12,8 @@ import java.io.Serializable;
 public class PassengerDTO implements Serializable {
     private String passengerId;
     private String fullName;
-    private int age;
+    private Integer age;
     private String gender;
-    private int seatNumber;
+    private Integer seatNumber;
     private String bookingId;
 }

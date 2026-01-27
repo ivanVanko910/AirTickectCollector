@@ -20,8 +20,8 @@ public class BookingEntity implements Serializable {
     @Id
     private String bookingId;
     private LocalDateTime bookingDate;
-    private int seatCount;
-    private double totalAmount;
+    private Integer seatCount;
+    private Double totalAmount;
     @Enumerated(EnumType.STRING)
     private BookingStatus status;
 

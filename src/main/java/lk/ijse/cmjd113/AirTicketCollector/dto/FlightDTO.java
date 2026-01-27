@@ -14,9 +14,9 @@ public class FlightDTO implements Serializable {
     private String flightNo;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    private int totalSeats;
-    private int availableSeats;
-    private double baseFare;
+    private Integer totalSeats;
+    private Integer availableSeats;
+    private Double baseFare;
     private FlightStatus status;
     private String departureAirport;
     private String arrivalAirport;
